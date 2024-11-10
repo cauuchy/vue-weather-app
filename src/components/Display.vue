@@ -9,7 +9,7 @@
           <th>降水確率 (%)</th>
         </tr>
       </thead>
-      <tbody v-if="weatherData">
+      <tbody v-if="weatherData.getRawWeatherData.length">
         <tr v-for="day in weatherData.getRawWeatherData" :key="day.date">
           <td>{{ day.date }}</td>
           <td>{{ getWeatherDescription(day.weatherCode) }}</td>
@@ -18,7 +18,7 @@
         </tr>
       </tbody>
     </table>
-    <div v-if="weatherData">
+    <div v-if="weatherData.getRawWeatherData.length">
       <p>平均気温: {{ weatherData.getAverageTemperature() }}°C</p>
       <p>最大気温: {{ weatherData.getMaxAverageTemperature() }}°C</p>
     </div>
