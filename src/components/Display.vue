@@ -29,7 +29,7 @@
 import { defineProps } from "vue";
 import { WeatherData } from "../interface/weather";
 
-const props = defineProps<{ weatherData: WeatherData | null}>();
+const props = defineProps<{ weatherData: WeatherData }>();
 
 const getWeatherDescription = (code: number): string => {
   if (code >= 0 && code <= 1) return "快晴";
