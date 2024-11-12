@@ -9,8 +9,8 @@
           <th>降水確率 (%)</th>
         </tr>
       </thead>
-      <tbody v-if="weatherData.getRawWeatherData.length">
-        <tr v-for="day in weatherData.getRawWeatherData" :key="day.date">
+      <tbody v-if="weatherValue.getRawWeatherData.length">
+        <tr v-for="day in weatherValue.getRawWeatherData" :key="day.date">
           <td>{{ day.date }}</td>
           <td>{{ getWeatherDescription(day.weatherCode) }}</td>
           <td>{{ day.temperature }}</td>
@@ -18,9 +18,9 @@
         </tr>
       </tbody>
     </table>
-    <div v-if="weatherData.getRawWeatherData.length">
-      <p>平均気温: {{ weatherData.getAverageTemperature() }}°C</p>
-      <p>最大気温: {{ weatherData.getMaxAverageTemperature() }}°C</p>
+    <div v-if="weatherValue.getRawWeatherData.length">
+      <p>平均気温: {{ props.weatherValue.getAverageTemperature() }}°C</p>
+      <p>最大気温: {{ props.weatherValue.getMaxAverageTemperature() }}°C</p>
     </div>
   </div>
 </template>
@@ -29,8 +29,10 @@
 import { defineProps } from "vue";
 import { WeatherData } from "../interface/weather";
 
-const props = defineProps<{ weatherData: WeatherData }>();
+// const props = defineProps<{ 親コンポーネントから受け取るオブジェクト }>();
+const props = defineProps<{ weatherValue: WeatherData }>();
 
+// 天気予報コードの振り分け
 const getWeatherDescription = (code: number): string => {
   if (code >= 0 && code <= 1) return "快晴";
   else if (code <= 3) return "晴れ";

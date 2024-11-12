@@ -19,6 +19,7 @@ const prefectures = [
 
 const selectedPrefecture = ref<typeof prefectures[0] | null>(null);
 
+// 地域が選択されたらAPI用にlatitudeとlogitudeを親Appに渡す
 function onSelect() {
   if (selectedPrefecture.value) {
     const { latitude, longitude } = selectedPrefecture.value;
@@ -26,8 +27,9 @@ function onSelect() {
   }
 }
 
+// const emit = defineEmits<{(e: "イベント名", 引数): 型,...}();
 const emit = defineEmits<{
-  (e: "selectLocation", latitude: number, longitude: number): void;
+  (e: "selectLocation", latitude: number, longitude: number): void
 }>();
 
 </script>

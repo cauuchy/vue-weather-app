@@ -1,8 +1,9 @@
-<!-- src/components/App.vue -->
 <template>
   <div>
+    <!-- @イベント名="実行関数"  Emitsのイベント名を指定する -->
     <Form @selectLocation="fetchWeather" />
-    <Display :weatherData="weatherData" />
+    <!-- :共有変数="実際のオブジェクト"  Propsで渡すデータを指定する -->
+    <Display :weatherValue="weatherData" />
   </div>
 </template>
 
@@ -14,9 +15,10 @@ import { fetchWeatherData } from "./service/weatherService";
 import { WeatherData } from "./interface/weather";
 
 // 天気データ
+// ref<型>(データ);
 const weatherData = ref<WeatherData>(new WeatherData([]));
 
-// fetchWeather関数
+// 地域が選択されたら呼び出してDisplayに渡す
 async function fetchWeather(latitude: number, longitude: number) {
   try {
     const data = await fetchWeatherData(latitude, longitude);

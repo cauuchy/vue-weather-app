@@ -1,3 +1,4 @@
+// importするものはexportする
 export interface Weather {
   date: string;
   weatherCode: number;
