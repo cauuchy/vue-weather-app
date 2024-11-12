@@ -23,10 +23,13 @@ const selectedPrefecture = ref<typeof prefectures[0] | null>(null);
 function onSelect() {
   if (selectedPrefecture.value) {
     const { latitude, longitude } = selectedPrefecture.value;
+    // Emitの設定
+    // emit("イベント名", 引数...)
     emit("selectLocation", latitude, longitude);
   }
 }
 
+// Emitの定義
 // const emit = defineEmits<{(e: "イベント名", 引数): 型,...}();
 const emit = defineEmits<{
   (e: "selectLocation", latitude: number, longitude: number): void
